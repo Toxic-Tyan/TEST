@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Кликер</title>
+
+    <link rel="stylesheet" href="1.css">
+    <script type="module" src="1.js"></script>
+    
+
+</head>
+
+<body>
+<button id="creditsBtn"title="Автори">👨‍💻</button>
+<button id="muteBtn" title="Включить/выключить звук">🔊</button>
+<button id="themeBtn" title="Сменить тему">🌙</button>
+
+
+<div class="game">
+  
+
+    <!-- LEVEL BAR -->
+    <div class="levels-bar">
+
+        <div class="level-card active">
+            <img src="blocks/Grass.png" alt="">
+            <span>Ур. 1</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Oak.png" alt="">
+            <span>Ур. 2</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Stone.png" alt="">
+            <span>Ур. 3</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Iron.png" alt="">
+            <span>Ур. 4</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Gold.png" alt="">
+            <span>Ур. 5</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Diamond.png" alt="">
+            <span>Ур. 6</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Obsidian.png" alt="">
+            <span>Ур. 7</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/Ancient_Debris.png" alt="">
+            <span>Ур. 8</span>
+        </div>
+
+        <div class="level-card">
+            <img src="blocks/End_Stone.png" alt="">
+            <span>Ур. 9</span>
+        </div>
+        <div class="level-card">
+            <img src="blocks/Bedrock.png" alt="">
+            <span>Ур. 10</span>
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <!-- TASKS -->
+        <div class="tasks">
+
+            <h2>Задания</h2>
+
+            <div id="task1" class="task">
+                Нажми 10 кликов и получи 10 изумрудов
+                <span id="taskProgress1">0 / 10</span>
+            </div>
+
+            <div id="task2" class="task">
+                Наведи курсор 5 раз и получи 5 изумрудов
+                <span id="taskProgress2">0 / 5</span>
+            </div>
+
+            <div id="task3" class="task">
+                Нажми кнопку "OK" 3 раза и получи 15 изумрудов
+                <br>
+                <button id="okBtn">OK</button>
+                <span id="taskProgress3">0 / 3</span>
+            </div>
+
+            <div id="task4" class="task">
+                Подожди 10 секунд и получи 20 изумрудов
+                <span id="taskProgress4">0 / 10 сек</span>
+            </div>
+
+            <div id="task5" class="task">
+                Введи слово "emerald" и получи 30 изумрудов
+                <input id="taskInput" type="text" placeholder="Введите: emerald">
+                <span id="taskProgress5">0 / 1</span>
+            </div>
+
+        </div>
+       
+
+        <!-- CENTER (FIXED STRUCTURE) -->
+        <div class="center">
+
+            <img id="block" src="blocks/Grass.png" alt="Блок">
+
+            <div id="hp">100 / 100</div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+
+            <div class="coins">
+                <span id="coins">0</span>
+                <img src="emerald.png" alt="Изумруд" class="coin-icon">
+            </div>
+
+            <div class="shop">
+                <h2>Магазин</h2>
+
+                <div id="shop"></div>
+
+            </div>
+               
+
+        </div>
+
+    </div>
+</div>
+
+<!-- BACKGROUND VIDEO -->
+<video autoplay muted loop id="bg-video">
+    <source src="BG.mp4" type="video/mp4">
+</video>
+
+<video autoplay muted loop id="bg-video">
+    <source src="LightBG.mp4" type="video/mp4">
+</video>
+
+
+<div class="overlay"></div>
+
+<div id="loader">
+    <img src="loading.jpg" alt="Loading">
+    <h2>Загрузка...</h2>
+</div>
+<img id="customCursor" src="pickaxe/Wooden_Pickaxe.png">
+
+</body>
+</html>

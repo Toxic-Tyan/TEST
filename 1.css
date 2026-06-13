@@ -1,0 +1,697 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('font/minecraft.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    font-family:'Minecraft', Arial, sans-serif;
+    color:#fff;
+    background:#111;
+    letter-spacing: 1px;
+    zoom: 0.8;
+}
+
+button{
+    font-family:'Minecraft', Arial, sans-serif;
+    letter-spacing: 1px;
+}
+
+#taskInput{
+    font-family: 'Minecraft', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 5px;
+}
+
+/* Кнопка выключения звука */
+#muteBtn {
+    position: fixed;       
+    bottom: 20px;           
+    right: 20px;          
+    width: 45px;          
+    height: 45px;
+    background: rgba(30, 30, 30, 0.75);
+    border: 2px solid #2ecc71;
+    color: #2ecc71;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 4px;    
+}
+
+#muteBtn:hover {
+    background-color: #2ecc71;
+    color: #1e1e1e;
+}
+
+#muteBtn:active {
+    transform: scale(0.9); 
+}
+
+.game{
+    width:100%;
+    height:100%;
+    padding:20px;
+    backdrop-filter: blur(2px);
+}
+
+.levels-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    margin-bottom:20px;
+    border:3px solid #2ecc71;
+    background:rgba(30,30,30,0.75);
+    min-width: max-content;
+}
+
+.content{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+}
+
+/* LEFT TASKS */
+.tasks{
+    width:320px;             
+    min-height:550px;         
+    padding:20px;           
+    border:3px solid #2ecc71;
+    background:rgba(30,30,30,0.75);
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    gap:15px;               
+}
+
+
+.tasks h2{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:16px;
+    color:#00ffcc;
+}
+
+
+.task{
+    border:2px solid #444;
+    padding:10px;
+    background:rgba(20,20,20,0.8);
+    font-size:12px;
+    line-height:1.4;
+}
+
+
+.task span{
+    display:block;
+    margin-top:8px;
+    color:#2ecc71;
+    font-size:12px;
+}
+
+
+.task.done{
+    border-color:#2ecc71;
+    background:rgba(0,50,0,0.6);
+}
+
+/* Стили для кнопки "ОК" */
+#okBtn {
+    background-color: transparent;
+    color: #2ecc71;
+    border: 2px solid #2ecc71;
+    padding: 4px 12px;
+    margin-top: 8px;
+    font-family: inherit; /* Наследует ваш пиксельный шрифт */
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+#okBtn:hover:not(:disabled) {
+    background-color: #2ecc71;
+    color: #1e1e1e;
+}
+
+#okBtn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+#okBtn:disabled {
+    color: #555;
+    border-color: #555;
+    background-color: rgba(20, 20, 20, 0.5);
+}
+
+/* Основные стили taskInput */
+#taskInput {
+    font-family: 'Minecraft', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 6px 10px;
+    margin-top: 10px;
+    width: 100%; 
+    box-sizing: border-box; 
+    background-color: transparent;
+    color: #2ecc71;
+    border: 2px solid #2ecc71;
+    outline: none; 
+    transition: all 0.2s ease;
+}
+
+#taskInput:focus:not(:disabled) {
+    background-color: rgba(46, 204, 113, 0.1); 
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.4); 
+}
+
+#taskInput::placeholder {
+    color: rgba(46, 204, 113, 0.4); 
+}
+
+#taskInput:disabled {
+    color: #555;
+    border-color: #555;
+    background-color: rgba(20, 20, 20, 0.5);
+}
+
+/* CENTER (BLOCK AREA) */
+.center{
+    flex:1;
+    min-width:300px;
+    min-height: 80vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+/* БЛОКС */
+#block{
+    width:150px;
+    height:150px;
+    cursor:pointer;
+    user-select:none;
+    transition:0.1s;
+    filter: drop-shadow(0 0 5px black);
+    margin-bottom:10px;
+}
+
+#block:active{
+    transform:scale(0.9);
+}
+
+/* HP UNDER BLOCK */
+#hp{
+    font-size:20px;
+    color:#00ffcc;
+    text-align:center;
+}
+
+/* ================= RIGHT PANEL ================= */
+
+.right-panel{
+    width:320px;
+    flex-shrink:0;
+}
+
+/* МИНИТКИ */
+.coins{
+    border:3px solid #2ecc71;
+    background:rgba(30,30,30,0.75);
+    text-align:center;
+    font-size:30px;
+    padding:15px;
+    margin-bottom:15px;
+    color:gold;
+}
+
+/* МАГАЗИНЧИК */
+.shop{
+    border:3px solid #2ecc71;
+    background:rgba(30,30,30,0.75);
+    height:540px;
+    padding:15px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+/* SHOP ITEM */
+.shop-item{
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.shop-item img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.shop-item span{
+    font-size:10px;
+    flex:1;
+}
+
+.shop-item button{
+    width: 120px;   /* или 120px — выбери */
+    padding: 5px 10px;
+    background: #2ecc71;
+    border: none;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.shop-item button:hover:not(:disabled){
+    background:#00ff00;
+    cursor: pointer;
+}
+
+.shop-item button:active:not(:disabled){
+    transform: scale(0.95);
+}
+
+.shop-item .status{
+    margin-left:8px;
+    font-size:16px;
+    color:green;
+}
+
+.shop-item.unavailable {
+    opacity: 0.5; 
+    filter: grayscale(50%); 
+    transition: 0.3s ease; 
+}
+
+/* ================= ЛЕВЕЛС ================= */
+
+.level-card {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    gap: 8px;   
+    text-align: center;
+}
+
+.level-card img{
+    width:80px;
+    height:80px;
+    border:3px solid #444;
+    transition:0.2s;
+    display: block;
+}
+
+.level-card span {
+    font-size: 12px;        /* Подбираем размер под ретро-шрифт 'Press Start 2P' */
+    color: #aaa;            /* Делаем базовый цвет текста чуть мягче, не кислотно-белым */
+    user-select: none;      /* Чтобы текст случайно не выделялся при кликах */
+}
+
+.active img {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.active span {
+    color: #00ff00;         /* Подсвечиваем зеленым текст у текущего активного уровня */
+    font-weight: bold;
+}
+
+
+/* ================= ВИДИКС ================= */
+
+#bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+
+/* html, body {
+    overflow: hidden;
+} */
+
+
+
+/* тема ====================================== */
+/* Кнопка смены темы */
+#themeBtn {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(30, 30, 30, 0.75);
+    border: 2px solid #3498db;
+    color: #3498db;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+#themeBtn:hover {
+    background-color: #3498db;
+    color: #1e1e1e;
+}
+
+#themeBtn {
+    right: 70px; /* отступ, чтобы стояла слева */
+    background: rgba(30, 30, 30, 0.75);
+    border: 2px solid #2ecc71;;
+    color: #2ecc71;;
+}
+
+/* Светлая тема */
+body.light {
+    background: #fdfdfd;
+    color: #333;
+}
+
+/* Общие панели */
+body.light .tasks,
+body.light .shop,
+body.light .coins,
+body.light .levels-bar {
+    background: rgba(255, 240, 245, 0.85); /* нежно-розовый с прозрачностью */
+    border-color: #ff99cc; /* розовая рамка */
+}
+
+/* Задания */
+body.light .task {
+    background: rgba(255, 250, 252, 0.9);
+    border-color: #ffccd5;
+}
+
+body.light .task span {
+    color: #ff66aa;
+}
+
+/* HP */
+body.light #hp {
+    color: #ff66aa;
+}
+
+/* Активный уровень */
+body.light .active img {
+    border-color: #ff99cc;
+    box-shadow: 0 0 10px #ff99cc;
+}
+
+body.light .active span {
+    color: #ff66aa;
+    font-weight: bold;
+}
+
+/* Магазин */
+body.light .shop-item button {
+    background: #ff99cc;
+    color: #fff;
+}
+
+body.light .shop-item button:hover:not(:disabled) {
+    background: #ff66aa;
+}
+
+/* Монеты */
+body.light .coins {
+    color: #ff66aa;
+    border-color: #ff99cc;
+}
+
+/* Видео фон для светлой темы */
+body.light #bg-video {
+    opacity: 0.9; /* чуть светлее */
+}
+
+body.light .tasks h2 {
+    color: #ff66aa; /* нежно-розовый */
+}
+
+body.light #muteBtn {
+    background: rgba(255, 240, 245, 0.85);
+    border: 2px solid #ff66aa;
+    color: #ff66aa;
+}
+
+body.light #themeBtn {
+    background: rgba(255, 240, 245, 0.85);
+    border: 2px solid #ff66aa;
+    color: #ff66aa;
+}
+
+#okBtn {
+    background-color: transparent;
+    color: #2ecc71;
+    border: 2px solid #2ecc71;
+}
+
+/* Светлая тема для "ОК" */
+body.light #okBtn {
+    color: #ff66aa;
+    border-color: #ff66aa;
+}
+
+body.light #okBtn:hover:not(:disabled) {
+    background-color: #ff66aa;
+    color: #fff;
+}
+
+/* ==== Поле ввода coin ==== */
+#taskInput {
+    color: #2ecc71;
+    border: 2px solid #2ecc71;
+}
+
+/* Светлая тема для ввода */
+body.light #taskInput {
+    color: #ff66aa;
+    border-color: #ff66aa;
+}
+
+body.light #taskInput::placeholder {
+    color: rgba(255, 102, 170, 0.4);
+}
+
+body.light #taskInput:focus:not(:disabled) {
+    background-color: rgba(255, 102, 170, 0.1);
+    box-shadow: 0 0 8px rgba(255, 102, 170, 0.4);
+}
+
+
+/* ===== Загрузочный экран ===== */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease;
+}
+
+#loader img {
+    width: 300px;
+    max-width: 80%;
+    image-rendering: pixelated;
+    margin-bottom: 20px;
+}
+
+#loader h2 {
+    color: #2ecc71;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 24px;
+}
+
+#loader.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+#loader img {
+    width: 300px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+
+
+.coin-icon {
+    width: 47px;
+    height: 47px;
+    margin-left: 8px;
+    vertical-align: middle;
+    image-rendering: pixelated;
+}
+
+.coins {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border: 3px solid #2ecc71;
+    background: rgba(30,30,30,0.75);
+    font-size: 30px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: gold;
+}
+
+.shop-emerald {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px;
+    max-height: 20px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    vertical-align: middle;
+}
+#bonus-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.falling-bonus {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(110vh);
+    }
+}
+#credits-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.credit-name {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px black;
+    animation: fallCredits linear forwards;
+}
+
+@keyframes fallCredits {
+    from {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+#creditsBtn {
+    position: fixed;
+    bottom: 20px;  
+    right: 120px;
+
+    width: 45px;
+    height: 45px;
+
+    background: rgba(30, 30, 30, 0.75);
+    border: 2px solid #2ecc71;
+    color: #2ecc71;
+
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+#creditsBtn:hover {
+    background-color: #2ecc71;
+    color: #1e1e1e;
+}
+#customCursor {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: 10000;
+
+    transform: translate(-50%, -50%);
+    display: none;
+
+    image-rendering: pixelated;
+}
+.hide-cursor {
+    cursor: none !important;
+}
